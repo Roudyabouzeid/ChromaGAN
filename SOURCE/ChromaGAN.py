@@ -25,8 +25,17 @@ from keras import applications
 from keras.callbacks import TensorBoard
 from keras.optimizers import Adam
 from keras.layers import Input
-from keras.layers.merge import _Merge
-from keras.layers.advanced_activations import LeakyReLU
+# from keras.layers.merge import _Merge
+from tensorflow.keras.layers import Layer
+
+class _Merge(Layer):
+    def _merge_function(self, inputs):
+        raise NotImplementedError("Subclasses must implement _merge_function")
+
+from keras.layers import _Merge
+# from keras.layers.advanced_activations import LeakyReLU
+# from tensorflow.keras.layers import LeakyReLU
+from keras.layers import LeakyReLU
 from keras import backend as K
 from keras.models import load_model, model_from_json, Model
 
